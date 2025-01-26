@@ -1,0 +1,44 @@
+{
+    "name": "Spring Boot & MySQL",
+    "dockerComposeFile": ["./docker-compose.yml"],
+    "service": "app",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "java.configuration.runtimes": [
+                    {
+                        "name": "JavaSE-21",
+                        "path": "/usr/lib/jvm/java-21-openjdk",
+                        "default": true
+                    }
+                ],
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "extensions": [
+                    "vscjava.vscode-java-pack",
+                    "pivotal.vscode-spring-boot",
+                    "redhat.vscode-xml",
+                    "ms-azuretools.vscode-docker",
+                    "eamodio.gitlens"
+                ]
+            }
+        }
+        
+    },
+    "postCreateCommand": "chmod +x /usr/local/bin/wait_for_it.sh",
+    "remoteEnv": {
+        "SPRING_PROFILES_ACTIVE": "dev"
+    },
+    "portsAttributes": {
+        "8080": {
+            "label": "Spring Boot API"
+        },
+        "3307": {
+            "label": "MySQL"
+        },
+        "9090": {
+            "label": "phpMyAdmin"
+        }
+    },
+    "shutdownAction": "stopCompose"
+}
